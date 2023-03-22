@@ -1,0 +1,31 @@
+version: "3"
+services:
+  nginx:
+    platform: linux/amd64
+    container_name: pen-it-notes-nginx
+    image: hriddhi/pen-it-notes-nginx
+    build:
+      dockerfile: Dockerfile
+      context: ./pen-it-notes-nginx
+    depends_on:
+      - api
+      - client
+    restart: always
+    ports:
+      - "80:80"
+  api:
+    platform: linux/amd64
+    container_name: pen-it-notes-server
+    image: hriddhi/pen-it-notes-server
+    build:
+      dockerfile: Dockerfile.prod
+      context: ./pen-it-notes-server
+  client:
+    platform: linux/amd64
+    container_name: pen-it-notes-client
+    image: hriddhi/pen-it-notes-client
+    build:
+      dockerfile: Dockerfile.prod
+      context: ./pen-it-notes-client
+    environment:
+      - WDS_SOCKET_PORT=0

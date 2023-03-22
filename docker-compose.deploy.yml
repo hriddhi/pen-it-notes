@@ -1,0 +1,14 @@
+version: "3"
+services:
+  nginx:
+    image: hriddhi/pen-it-notes-nginx
+    depends_on:
+      - api
+      - client
+    restart: always
+    ports:
+      - "80:80"
+  api:
+    image: hriddhi/pen-it-notes-server
+  client:
+    image: hriddhi/pen-it-notes-client

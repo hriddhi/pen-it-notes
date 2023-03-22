@@ -1,0 +1,9 @@
+FROM node:18-alpine
+WORKDIR "/app"
+COPY ./package.json ./
+RUN npm install
+COPY . .
+CMD ["npm", "start"]
+
+# docker build -t hriddhi/pen-it-notes-standalone-server --platform linux/amd64 -f Dockerfile.prod .
+# docker run -p 3000:8080 hriddhi/pen-it-notes-standalone-server  

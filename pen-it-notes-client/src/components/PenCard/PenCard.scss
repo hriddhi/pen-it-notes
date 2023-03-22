@@ -1,0 +1,115 @@
+.pen-card {
+  &__container {
+    height: 100% !important;
+    border: none !important;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(45deg, #0ed100, #00bfff);
+    padding: 2px;
+    transition: all 0.2s;
+    position: relative !important;
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 1;
+      width: 100%;
+      box-shadow: 0 0 16px #aaa;
+
+      .pen-card__action-container {
+        right: -32px;
+      }
+    }
+  }
+
+  &__body {
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__text {
+    &--title {
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    &--content {
+      font-size: 14px;
+      white-space: pre-line;
+      line-clamp: 10;
+      overflow: hidden;
+      display: -webkit-box;
+      box-orient: vertical;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 10;
+      flex: 1;
+    }
+    &--metadata {
+      font-size: 11px;
+      color: grey;
+      margin-top: 8px;
+      font-weight: 200;
+    }
+  }
+
+  &__action-container {
+    position: absolute;
+    right: 0;
+    z-index: -1;
+
+    transition: all 0.2s;
+
+    &--md {
+      width: 32px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &--sm {
+      width: 100%;
+      height: 24px;
+      display: none;
+    }
+  }
+
+  &__view-btn {
+    float: right;
+    font-size: 12px;
+    border-radius: 6px;
+
+    &--outer {
+      padding: 6px 12px;
+      background: linear-gradient(45deg, #0ed100, #00bfff);
+      color: #fff;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .pen-card {
+    &__action-container {
+      &--md {
+        display: none !important;
+      }
+
+      &--sm {
+        display: block !important;
+      }
+    }
+
+    &__container:hover {
+      transform: scale(1);
+      z-index: 1;
+      width: 100%;
+      margin-bottom: 40px;
+      height: auto !important;
+
+      .pen-card__action-container--sm {
+        bottom: -32px;
+        right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+version: "3"
+services:
+  nginx:
+    container_name: pen-it-notes-nginx
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./pen-it-notes-nginx
+    ports:
+      - "3000:80"
+  api:
+    container_name: pen-it-notes-server
+    build:
+      dockerfile: Dockerfile
+      context: ./pen-it-notes-server
+    volumes:
+      - /app/node_modules
+      - ./pen-it-notes-server:/app
+  client:
+    container_name: pen-it-notes-client
+    environment:
+      - WDS_SOCKET_PORT=0
+    build:
+      dockerfile: Dockerfile
+      context: ./pen-it-notes-client
+    volumes:
+      - /app/node_modules
+      - ./pen-it-notes-client:/app
